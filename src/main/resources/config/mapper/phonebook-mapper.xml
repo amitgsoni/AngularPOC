@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.clsa.phonebook.mybatis.PhonebookMapper">
+
+	<resultMap type="com.clsa.phonebook.model.Person" id="personMap">
+		<id column="person_id" property="personId" />
+		<result column="first_name" property="firstName" />
+		<result column="last_name" property="lastName" />
+		<!-- if collection is used SQL should be in XML -->
+		<collection property="contacts" column="parent_id" javaType="ArrayList" ofType="com.clsa.phonebook.model.Contact">
+			<id column="contact_id" property="contactId" />
+			<result column="phone_no" property="phoneNo" />
+		</collection>
+	</resultMap>
+
+	<select id="findByName" parameterType="java.util.Map" resultMap="personMap">
+		SELECT p.person_id, first_name, last_name, contact_id, phone_no FROM person p
+		left outer join contact c on p.person_id = c.person_id
+	</select>
+
+</mapper>
