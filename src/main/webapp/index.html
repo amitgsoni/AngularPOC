@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Phonebook</title>
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <!-- Dependencies -->
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap.js"></script>
+    <script src="js/ui-bootstrap-tpls.js"></script>
+
+    <!-- Our Application Scripts -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/phonebookCtrl.js"></script>
+
+    <body ng-app="phonebookApp">
+
+
+    <div class="container" ng-controller="PhonebookCtrl">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Phonebook Search</h1>
+<input type="text" class="form-control" placeholder="Search for a contact" ng-model="selectedPerson" typeahead="person as person.lastName + ', ' +person.firstName for person in getContacts($viewValue)">
+
+
+            </div>
+        </div>
+ 
+ <div class="row">
+    <div class="col-lg-6">
+        <h1>Selected Person</h1>
+
+<table border="1">
+    <tr>
+        <th>Phone No</th>
+    </tr>
+    <tr ng-repeat="contact in selectedPerson.contacts">
+        <td>{{contact.phoneNo}}</td>
+    </tr>
+</table>
+    </div>
+</div>
+    </div>        
+
+
+    </body>
+
+
+</html>

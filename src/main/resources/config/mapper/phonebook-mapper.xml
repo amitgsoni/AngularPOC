@@ -17,6 +17,7 @@
 	<select id="findByName" parameterType="java.util.Map" resultMap="personMap">
 		SELECT p.person_id, first_name, last_name, contact_id, phone_no FROM person p
 		left outer join contact c on p.person_id = c.person_id
+		where first_name like '%'||#{name}||'%' or last_name like '%'||#{name}||'%'
 	</select>
 
 </mapper>
